@@ -1,0 +1,23 @@
+[package]
+authors = [
+    "Thomas Kuenzel <thomas.kuenzel@gmx.de>"
+]
+description = "Peripheral access API for MSP430G2231 microcontroller"
+documentation = "https://docs.rs/msp430g2231"
+keywords = ["no-std", "msp430", "ti", "launchpad"]
+license = "MIT OR Apache-2.0"
+name = "msp430g2231"
+repository = "https://github.com/tkuenzel/msp430g2231"
+version = "0.1.0"
+
+[dependencies]
+bare-metal = "0.2.0"
+msp430 = "0.2.0"
+vcell = "0.1.0"
+
+[dependencies.msp430-rt]
+optional = true
+version = "0.2.0"
+
+[features]
+rt = ["msp430-rt/device"]
