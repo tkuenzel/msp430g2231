@@ -1,7 +1,4 @@
 #![feature(abi_msp430_interrupt)]
-#![cfg_attr(feature = "rt", feature(global_asm))]
-#![cfg_attr(feature = "rt", feature(use_extern_macros))]
-#![cfg_attr(feature = "rt", feature(used))]
 #![doc = "Peripheral access API for MSP430G2231 microcontrollers (generated using svd2rust v0.17.0)\n\nYou can find an overview of the API [here].\n\n[here]: https://docs.rs/svd2rust/0.17.0/svd2rust/#peripheral-api"]
 #![deny(const_err)]
 #![deny(dead_code)]
@@ -25,20 +22,84 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 #![no_std]
+extern crate bare_metal;
 extern crate msp430;
 #[cfg(feature = "rt")]
 extern crate msp430_rt;
-#[cfg(feature = "rt")]
-pub use msp430_rt::default_handler;
-extern crate bare_metal;
 extern crate vcell;
 use core::marker::PhantomData;
 use core::ops::Deref;
+#[cfg(feature = "rt")]
+extern "msp430-interrupt" {
+    fn PORT1();
+    fn PORT2();
+    fn USI();
+    fn ADC10();
+    fn TIMERA1();
+    fn TIMERA0();
+    fn WDT();
+    fn NMI();
+}
 #[doc(hidden)]
-pub mod interrupt;
-pub use self::interrupt::Interrupt;
+pub union Vector {
+    _handler: unsafe extern "msp430-interrupt" fn(),
+    _reserved: u16,
+}
+#[cfg(feature = "rt")]
+#[doc(hidden)]
+#[link_section = ".vector_table.interrupts"]
+#[no_mangle]
+#[used]
+pub static __INTERRUPTS: [Vector; 15] = [
+    Vector { _reserved: 0 },
+    Vector { _reserved: 0 },
+    Vector { _handler: PORT1 },
+    Vector { _handler: PORT2 },
+    Vector { _handler: USI },
+    Vector { _handler: ADC10 },
+    Vector { _reserved: 0 },
+    Vector { _reserved: 0 },
+    Vector { _handler: TIMERA1 },
+    Vector { _handler: TIMERA0 },
+    Vector { _handler: WDT },
+    Vector { _reserved: 0 },
+    Vector { _reserved: 0 },
+    Vector { _reserved: 0 },
+    Vector { _handler: NMI },
+];
+#[doc = r"Enumeration of all the interrupts"]
+#[derive(Copy, Clone, Debug)]
+#[repr(u8)]
+pub enum Interrupt {
+    #[doc = "2 - 0xFFE4 Port 1"]
+    PORT1 = 2,
+    #[doc = "3 - 0xFFE6 Port 2"]
+    PORT2 = 3,
+    #[doc = "4 - 0xFFE8 USI"]
+    USI = 4,
+    #[doc = "5 - 0xFFEA ADC10"]
+    ADC10 = 5,
+    #[doc = "8 - 0xFFF0 Timer A CC1, TA"]
+    TIMERA1 = 8,
+    #[doc = "9 - 0xFFF2 Timer A CC0"]
+    TIMERA0 = 9,
+    #[doc = "10 - 0xFFF4 Watchdog Timer"]
+    WDT = 10,
+    #[doc = "14 - 0xFFFC Non-maskable"]
+    NMI = 14,
+}
+unsafe impl bare_metal::Nr for Interrupt {
+    #[inline(always)]
+    fn nr(&self) -> u8 {
+        *self as u8
+    }
+}
+#[cfg(feature = "rt")]
+pub use self::Interrupt as interrupt;
 #[allow(unused_imports)]
 use generic::*;
+#[cfg(feature = "rt")]
+pub use msp430_rt::interrupt;
 #[doc = r"Common register and bit access and modify traits"]
 pub mod generic;
 #[doc = "Special Function"]
