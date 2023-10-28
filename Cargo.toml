@@ -9,15 +9,13 @@ license = "MIT OR Apache-2.0"
 name = "msp430g2231"
 repository = "https://github.com/tkuenzel/msp430g2231"
 version = "0.1.0"
+edition = "2021"
 
 [dependencies]
-bare-metal = "0.2.0"
-msp430 = "0.2.0"
+critical-section = { version = "1.0", optional = true }
+msp430 = "0.4.0"
+msp430-rt = { version = "0.4.0", optional = true }
 vcell = "0.1.0"
-
-[dependencies.msp430-rt]
-optional = true
-version = "0.2.0"
 
 [features]
 rt = ["msp430-rt/device"]
