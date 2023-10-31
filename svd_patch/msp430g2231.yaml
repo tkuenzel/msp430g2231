@@ -1,0 +1,10 @@
+_svd: ../../msp430g2231.svd
+
+_include:
+  - "../peripherals/adc10.yaml"
+  - "../peripherals/calibration_data.yaml"
+  - "../peripherals/flash.yaml"
+  - "../peripherals/port_1_2.yaml"
+  - "../peripherals/system_clock.yaml"
+  - "../peripherals/timer_a2.yaml"
+  - "../peripherals/watchdog_timer.yaml"
