@@ -1,113 +1,19 @@
-#[doc = "Reader of register BCSCTL1"]
-pub type R = crate::R<u8, super::BCSCTL1>;
-#[doc = "Writer for register BCSCTL1"]
-pub type W = crate::W<u8, super::BCSCTL1>;
-#[doc = "Register BCSCTL1 `reset()`'s with value 0"]
-impl crate::ResetValue for super::BCSCTL1 {
-    type Type = u8;
-    #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
-    }
-}
-#[doc = "Reader of field `RSEL0`"]
-pub type RSEL0_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `RSEL0`"]
-pub struct RSEL0_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> RSEL0_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
-        self.w
-    }
-}
-#[doc = "Reader of field `RSEL1`"]
-pub type RSEL1_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `RSEL1`"]
-pub struct RSEL1_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> RSEL1_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
-        self.w
-    }
-}
-#[doc = "Reader of field `RSEL2`"]
-pub type RSEL2_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `RSEL2`"]
-pub struct RSEL2_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> RSEL2_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
-        self.w
-    }
-}
-#[doc = "Reader of field `RSEL3`"]
-pub type RSEL3_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `RSEL3`"]
-pub struct RSEL3_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> RSEL3_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
-        self.w
-    }
-}
+#[doc = "Register `BCSCTL1` reader"]
+pub type R = crate::R<BCSCTL1_SPEC>;
+#[doc = "Register `BCSCTL1` writer"]
+pub type W = crate::W<BCSCTL1_SPEC>;
+#[doc = "Field `BCSCTL1` reader - Basic Clock System Control 1 register"]
+pub type BCSCTL1_R = crate::FieldReader;
+#[doc = "Field `BCSCTL1` writer - Basic Clock System Control 1 register"]
+pub type BCSCTL1_W<'a, REG, const O: u8> = crate::FieldWriterSafe<'a, REG, 8, O>;
+#[doc = "Field `RSEL` reader - Range Select Bit 0"]
+pub type RSEL_R = crate::FieldReader;
+#[doc = "Field `RSEL` writer - Range Select Bit 0"]
+pub type RSEL_W<'a, REG, const O: u8> = crate::FieldWriterSafe<'a, REG, 4, O>;
+#[doc = "Field `DIVA` reader - ACLK Divider 0"]
+pub type DIVA_R = crate::FieldReader<DIVA_A>;
 #[doc = "ACLK Divider 0\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum DIVA_A {
     #[doc = "0: ACLK Divider 0: /1"]
@@ -125,12 +31,13 @@ impl From<DIVA_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `DIVA`"]
-pub type DIVA_R = crate::R<u8, DIVA_A>;
+impl crate::FieldSpec for DIVA_A {
+    type Ux = u8;
+}
 impl DIVA_R {
-    #[doc = r"Get enumerated values variant"]
+    #[doc = "Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> DIVA_A {
+    pub const fn variant(&self) -> DIVA_A {
         match self.bits {
             0 => DIVA_A::DIVA_0,
             1 => DIVA_A::DIVA_1,
@@ -139,185 +46,145 @@ impl DIVA_R {
             _ => unreachable!(),
         }
     }
-    #[doc = "Checks if the value of the field is `DIVA_0`"]
+    #[doc = "ACLK Divider 0: /1"]
     #[inline(always)]
     pub fn is_diva_0(&self) -> bool {
         *self == DIVA_A::DIVA_0
     }
-    #[doc = "Checks if the value of the field is `DIVA_1`"]
+    #[doc = "ACLK Divider 1: /2"]
     #[inline(always)]
     pub fn is_diva_1(&self) -> bool {
         *self == DIVA_A::DIVA_1
     }
-    #[doc = "Checks if the value of the field is `DIVA_2`"]
+    #[doc = "ACLK Divider 2: /4"]
     #[inline(always)]
     pub fn is_diva_2(&self) -> bool {
         *self == DIVA_A::DIVA_2
     }
-    #[doc = "Checks if the value of the field is `DIVA_3`"]
+    #[doc = "ACLK Divider 3: /8"]
     #[inline(always)]
     pub fn is_diva_3(&self) -> bool {
         *self == DIVA_A::DIVA_3
     }
 }
-#[doc = "Write proxy for field `DIVA`"]
-pub struct DIVA_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DIVA_W<'a> {
-    #[doc = r"Writes `variant` to the field"]
-    #[inline(always)]
-    pub fn variant(self, variant: DIVA_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
-    }
+#[doc = "Field `DIVA` writer - ACLK Divider 0"]
+pub type DIVA_W<'a, REG, const O: u8> = crate::FieldWriterSafe<'a, REG, 2, O, DIVA_A>;
+impl<'a, REG, const O: u8> DIVA_W<'a, REG, O>
+where
+    REG: crate::Writable + crate::RegisterSpec,
+    REG::Ux: From<u8>,
+{
     #[doc = "ACLK Divider 0: /1"]
     #[inline(always)]
-    pub fn diva_0(self) -> &'a mut W {
+    pub fn diva_0(self) -> &'a mut crate::W<REG> {
         self.variant(DIVA_A::DIVA_0)
     }
     #[doc = "ACLK Divider 1: /2"]
     #[inline(always)]
-    pub fn diva_1(self) -> &'a mut W {
+    pub fn diva_1(self) -> &'a mut crate::W<REG> {
         self.variant(DIVA_A::DIVA_1)
     }
     #[doc = "ACLK Divider 2: /4"]
     #[inline(always)]
-    pub fn diva_2(self) -> &'a mut W {
+    pub fn diva_2(self) -> &'a mut crate::W<REG> {
         self.variant(DIVA_A::DIVA_2)
     }
     #[doc = "ACLK Divider 3: /8"]
     #[inline(always)]
-    pub fn diva_3(self) -> &'a mut W {
+    pub fn diva_3(self) -> &'a mut crate::W<REG> {
         self.variant(DIVA_A::DIVA_3)
     }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 4)) | (((value as u8) & 0x03) << 4);
-        self.w
-    }
 }
-#[doc = "Reader of field `XTS`"]
-pub type XTS_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `XTS`"]
-pub struct XTS_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> XTS_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
-        self.w
-    }
-}
-#[doc = "Reader of field `XT2OFF`"]
-pub type XT2OFF_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `XT2OFF`"]
-pub struct XT2OFF_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> XT2OFF_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
-        self.w
-    }
-}
+#[doc = "Field `XTS` reader - LFXTCLK 0:Low Freq. / 1: High Freq."]
+pub type XTS_R = crate::BitReader;
+#[doc = "Field `XTS` writer - LFXTCLK 0:Low Freq. / 1: High Freq."]
+pub type XTS_W<'a, REG, const O: u8> = crate::BitWriter<'a, REG, O>;
+#[doc = "Field `XT2OFF` reader - Enable XT2CLK"]
+pub type XT2OFF_R = crate::BitReader;
+#[doc = "Field `XT2OFF` writer - Enable XT2CLK"]
+pub type XT2OFF_W<'a, REG, const O: u8> = crate::BitWriter<'a, REG, O>;
 impl R {
-    #[doc = "Bit 0 - Range Select Bit 0"]
+    #[doc = "Bits 0:7 - Basic Clock System Control 1 register"]
     #[inline(always)]
-    pub fn rsel0(&self) -> RSEL0_R {
-        RSEL0_R::new((self.bits & 0x01) != 0)
+    pub fn bcsctl1(&self) -> BCSCTL1_R {
+        BCSCTL1_R::new(self.bits)
     }
-    #[doc = "Bit 1 - Range Select Bit 1"]
+    #[doc = "Bits 0:3 - Range Select Bit 0"]
     #[inline(always)]
-    pub fn rsel1(&self) -> RSEL1_R {
-        RSEL1_R::new(((self.bits >> 1) & 0x01) != 0)
-    }
-    #[doc = "Bit 2 - Range Select Bit 2"]
-    #[inline(always)]
-    pub fn rsel2(&self) -> RSEL2_R {
-        RSEL2_R::new(((self.bits >> 2) & 0x01) != 0)
-    }
-    #[doc = "Bit 3 - Range Select Bit 3"]
-    #[inline(always)]
-    pub fn rsel3(&self) -> RSEL3_R {
-        RSEL3_R::new(((self.bits >> 3) & 0x01) != 0)
+    pub fn rsel(&self) -> RSEL_R {
+        RSEL_R::new(self.bits & 0x0f)
     }
     #[doc = "Bits 4:5 - ACLK Divider 0"]
     #[inline(always)]
     pub fn diva(&self) -> DIVA_R {
-        DIVA_R::new(((self.bits >> 4) & 0x03) as u8)
+        DIVA_R::new((self.bits >> 4) & 3)
     }
     #[doc = "Bit 6 - LFXTCLK 0:Low Freq. / 1: High Freq."]
     #[inline(always)]
     pub fn xts(&self) -> XTS_R {
-        XTS_R::new(((self.bits >> 6) & 0x01) != 0)
+        XTS_R::new(((self.bits >> 6) & 1) != 0)
     }
     #[doc = "Bit 7 - Enable XT2CLK"]
     #[inline(always)]
     pub fn xt2off(&self) -> XT2OFF_R {
-        XT2OFF_R::new(((self.bits >> 7) & 0x01) != 0)
+        XT2OFF_R::new(((self.bits >> 7) & 1) != 0)
     }
 }
 impl W {
-    #[doc = "Bit 0 - Range Select Bit 0"]
+    #[doc = "Bits 0:7 - Basic Clock System Control 1 register"]
     #[inline(always)]
-    pub fn rsel0(&mut self) -> RSEL0_W {
-        RSEL0_W { w: self }
+    #[must_use]
+    pub fn bcsctl1(&mut self) -> BCSCTL1_W<BCSCTL1_SPEC, 0> {
+        BCSCTL1_W::new(self)
     }
-    #[doc = "Bit 1 - Range Select Bit 1"]
+    #[doc = "Bits 0:3 - Range Select Bit 0"]
     #[inline(always)]
-    pub fn rsel1(&mut self) -> RSEL1_W {
-        RSEL1_W { w: self }
-    }
-    #[doc = "Bit 2 - Range Select Bit 2"]
-    #[inline(always)]
-    pub fn rsel2(&mut self) -> RSEL2_W {
-        RSEL2_W { w: self }
-    }
-    #[doc = "Bit 3 - Range Select Bit 3"]
-    #[inline(always)]
-    pub fn rsel3(&mut self) -> RSEL3_W {
-        RSEL3_W { w: self }
+    #[must_use]
+    pub fn rsel(&mut self) -> RSEL_W<BCSCTL1_SPEC, 0> {
+        RSEL_W::new(self)
     }
     #[doc = "Bits 4:5 - ACLK Divider 0"]
     #[inline(always)]
-    pub fn diva(&mut self) -> DIVA_W {
-        DIVA_W { w: self }
+    #[must_use]
+    pub fn diva(&mut self) -> DIVA_W<BCSCTL1_SPEC, 4> {
+        DIVA_W::new(self)
     }
     #[doc = "Bit 6 - LFXTCLK 0:Low Freq. / 1: High Freq."]
     #[inline(always)]
-    pub fn xts(&mut self) -> XTS_W {
-        XTS_W { w: self }
+    #[must_use]
+    pub fn xts(&mut self) -> XTS_W<BCSCTL1_SPEC, 6> {
+        XTS_W::new(self)
     }
     #[doc = "Bit 7 - Enable XT2CLK"]
     #[inline(always)]
-    pub fn xt2off(&mut self) -> XT2OFF_W {
-        XT2OFF_W { w: self }
+    #[must_use]
+    pub fn xt2off(&mut self) -> XT2OFF_W<BCSCTL1_SPEC, 7> {
+        XT2OFF_W::new(self)
     }
+    #[doc = r" Writes raw bits to the register."]
+    #[doc = r""]
+    #[doc = r" # Safety"]
+    #[doc = r""]
+    #[doc = r" Passing incorrect value can cause undefined behaviour. See reference manual"]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
+        self.bits = bits;
+        self
+    }
+}
+#[doc = "Basic Clock System Control 1\n\nYou can [`read`](crate::generic::Reg::read) this register and get [`bcsctl1::R`](R).  You can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero) this register using [`bcsctl1::W`](W). You can also [`modify`](crate::generic::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+pub struct BCSCTL1_SPEC;
+impl crate::RegisterSpec for BCSCTL1_SPEC {
+    type Ux = u8;
+}
+#[doc = "`read()` method returns [`bcsctl1::R`](R) reader structure"]
+impl crate::Readable for BCSCTL1_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`bcsctl1::W`](W) writer structure"]
+impl crate::Writable for BCSCTL1_SPEC {
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: Self::Ux = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: Self::Ux = 0;
+}
+#[doc = "`reset()` method sets BCSCTL1 to value 0"]
+impl crate::Resettable for BCSCTL1_SPEC {
+    const RESET_VALUE: Self::Ux = 0;
 }

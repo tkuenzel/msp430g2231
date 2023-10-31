@@ -1,152 +1,94 @@
-#[doc = "Reader of register IE1"]
-pub type R = crate::R<u8, super::IE1>;
-#[doc = "Writer for register IE1"]
-pub type W = crate::W<u8, super::IE1>;
-#[doc = "Register IE1 `reset()`'s with value 0"]
-impl crate::ResetValue for super::IE1 {
-    type Type = u8;
-    #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
-    }
-}
-#[doc = "Reader of field `WDTIE`"]
-pub type WDTIE_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WDTIE`"]
-pub struct WDTIE_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> WDTIE_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
-        self.w
-    }
-}
-#[doc = "Reader of field `OFIE`"]
-pub type OFIE_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `OFIE`"]
-pub struct OFIE_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> OFIE_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
-        self.w
-    }
-}
-#[doc = "Reader of field `NMIIE`"]
-pub type NMIIE_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `NMIIE`"]
-pub struct NMIIE_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> NMIIE_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
-        self.w
-    }
-}
-#[doc = "Reader of field `ACCVIE`"]
-pub type ACCVIE_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `ACCVIE`"]
-pub struct ACCVIE_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> ACCVIE_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
-        self.w
-    }
-}
+#[doc = "Register `IE1` reader"]
+pub type R = crate::R<IE1_SPEC>;
+#[doc = "Register `IE1` writer"]
+pub type W = crate::W<IE1_SPEC>;
+#[doc = "Field `WDTIE` reader - Watchdog Interrupt Enable"]
+pub type WDTIE_R = crate::BitReader;
+#[doc = "Field `WDTIE` writer - Watchdog Interrupt Enable"]
+pub type WDTIE_W<'a, REG, const O: u8> = crate::BitWriter<'a, REG, O>;
+#[doc = "Field `OFIE` reader - Osc. Fault Interrupt Enable"]
+pub type OFIE_R = crate::BitReader;
+#[doc = "Field `OFIE` writer - Osc. Fault Interrupt Enable"]
+pub type OFIE_W<'a, REG, const O: u8> = crate::BitWriter<'a, REG, O>;
+#[doc = "Field `NMIIE` reader - NMI Interrupt Enable"]
+pub type NMIIE_R = crate::BitReader;
+#[doc = "Field `NMIIE` writer - NMI Interrupt Enable"]
+pub type NMIIE_W<'a, REG, const O: u8> = crate::BitWriter<'a, REG, O>;
+#[doc = "Field `ACCVIE` reader - Flash Access Violation Interrupt Enable"]
+pub type ACCVIE_R = crate::BitReader;
+#[doc = "Field `ACCVIE` writer - Flash Access Violation Interrupt Enable"]
+pub type ACCVIE_W<'a, REG, const O: u8> = crate::BitWriter<'a, REG, O>;
 impl R {
     #[doc = "Bit 0 - Watchdog Interrupt Enable"]
     #[inline(always)]
     pub fn wdtie(&self) -> WDTIE_R {
-        WDTIE_R::new((self.bits & 0x01) != 0)
+        WDTIE_R::new((self.bits & 1) != 0)
     }
     #[doc = "Bit 1 - Osc. Fault Interrupt Enable"]
     #[inline(always)]
     pub fn ofie(&self) -> OFIE_R {
-        OFIE_R::new(((self.bits >> 1) & 0x01) != 0)
+        OFIE_R::new(((self.bits >> 1) & 1) != 0)
     }
     #[doc = "Bit 4 - NMI Interrupt Enable"]
     #[inline(always)]
     pub fn nmiie(&self) -> NMIIE_R {
-        NMIIE_R::new(((self.bits >> 4) & 0x01) != 0)
+        NMIIE_R::new(((self.bits >> 4) & 1) != 0)
     }
     #[doc = "Bit 5 - Flash Access Violation Interrupt Enable"]
     #[inline(always)]
     pub fn accvie(&self) -> ACCVIE_R {
-        ACCVIE_R::new(((self.bits >> 5) & 0x01) != 0)
+        ACCVIE_R::new(((self.bits >> 5) & 1) != 0)
     }
 }
 impl W {
     #[doc = "Bit 0 - Watchdog Interrupt Enable"]
     #[inline(always)]
-    pub fn wdtie(&mut self) -> WDTIE_W {
-        WDTIE_W { w: self }
+    #[must_use]
+    pub fn wdtie(&mut self) -> WDTIE_W<IE1_SPEC, 0> {
+        WDTIE_W::new(self)
     }
     #[doc = "Bit 1 - Osc. Fault Interrupt Enable"]
     #[inline(always)]
-    pub fn ofie(&mut self) -> OFIE_W {
-        OFIE_W { w: self }
+    #[must_use]
+    pub fn ofie(&mut self) -> OFIE_W<IE1_SPEC, 1> {
+        OFIE_W::new(self)
     }
     #[doc = "Bit 4 - NMI Interrupt Enable"]
     #[inline(always)]
-    pub fn nmiie(&mut self) -> NMIIE_W {
-        NMIIE_W { w: self }
+    #[must_use]
+    pub fn nmiie(&mut self) -> NMIIE_W<IE1_SPEC, 4> {
+        NMIIE_W::new(self)
     }
     #[doc = "Bit 5 - Flash Access Violation Interrupt Enable"]
     #[inline(always)]
-    pub fn accvie(&mut self) -> ACCVIE_W {
-        ACCVIE_W { w: self }
+    #[must_use]
+    pub fn accvie(&mut self) -> ACCVIE_W<IE1_SPEC, 5> {
+        ACCVIE_W::new(self)
     }
+    #[doc = r" Writes raw bits to the register."]
+    #[doc = r""]
+    #[doc = r" # Safety"]
+    #[doc = r""]
+    #[doc = r" Passing incorrect value can cause undefined behaviour. See reference manual"]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
+        self.bits = bits;
+        self
+    }
+}
+#[doc = "Interrupt Enable 1\n\nYou can [`read`](crate::generic::Reg::read) this register and get [`ie1::R`](R).  You can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero) this register using [`ie1::W`](W). You can also [`modify`](crate::generic::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+pub struct IE1_SPEC;
+impl crate::RegisterSpec for IE1_SPEC {
+    type Ux = u8;
+}
+#[doc = "`read()` method returns [`ie1::R`](R) reader structure"]
+impl crate::Readable for IE1_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`ie1::W`](W) writer structure"]
+impl crate::Writable for IE1_SPEC {
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: Self::Ux = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: Self::Ux = 0;
+}
+#[doc = "`reset()` method sets IE1 to value 0"]
+impl crate::Resettable for IE1_SPEC {
+    const RESET_VALUE: Self::Ux = 0;
 }
